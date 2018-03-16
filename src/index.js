@@ -81,7 +81,7 @@ export default function seapig(children: Node, schema: SeaPigSchema = {}): SeaPi
     if (!child) {
       return;
     }
-    const matchingPropNames: Array<string> = propNames.filter(p => child.props[p]);
+    const matchingPropNames: Array<string> = propNames.filter(p => p === child.props.slot);
     invariant(matchingPropNames.length <= 1, `expected at most 1 seapig prop per element but found ${matchingPropNames.length} (${matchingPropNames.join(', ')}) for child at index ${i}`);
     const propName: ?string = matchingPropNames[0];
     result[propName ? convertPropName(propName) : REST].push(child);

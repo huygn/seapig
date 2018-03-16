@@ -5,8 +5,8 @@ import seapig, { OPTIONAL, OPTIONALS, REQUIRED, REQUIREDS } from '../src/index'
 // test data
 const PROP = 'whatever'
 const SEAPIG_PROP = `${PROP}Children`
-const a = <div whatever />
-const b = <div whatever />
+const a = <div slot='whatever' />
+const b = <div slot='whatever' />
 const c = <div />
 const d = <div />
 const children = [a, b, c, d]
@@ -109,14 +109,5 @@ describe('seapig', () => {
     expect(() => {
       seapig(children, null)
     }).toThrow('schema must be an object')
-  })
-  test(`should throw when an element has multiple matching props`, () => {
-    const invalidChildren = [<div whatever other />]
-    expect(() => {
-      seapig(invalidChildren, {
-        [PROP]: OPTIONAL,
-        other: OPTIONAL
-      })
-    }).toThrow('expected at most 1 seapig prop per element but found 2 (whatever, other) for child at index 0');
   })
 })
